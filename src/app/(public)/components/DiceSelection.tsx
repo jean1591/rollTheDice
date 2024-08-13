@@ -31,25 +31,33 @@ export const DiceSelection = () => {
   }, [])
 
   return (
-    <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-4 lg:grid-cols-6">
-      <DieCard value="one">
-        <DieOne />
-      </DieCard>
-      <DieCard value="two">
-        <DieTwo />
-      </DieCard>
-      <DieCard value="three">
-        <DieThree />
-      </DieCard>
-      <DieCard value="four">
-        <DieFour />
-      </DieCard>
-      <DieCard value="five">
-        <DieFive />
-      </DieCard>
-      <DieCard value="six">
-        <DieSix />
-      </DieCard>
+    <div>
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-4 lg:grid-cols-6">
+        <DieCard value="one">
+          <DieOne size="sm" />
+        </DieCard>
+        <DieCard value="two">
+          <DieTwo size="sm" />
+        </DieCard>
+        <DieCard value="three">
+          <DieThree size="sm" />
+        </DieCard>
+        <DieCard value="four">
+          <DieFour size="sm" />
+        </DieCard>
+        <DieCard value="five">
+          <DieFive size="sm" />
+        </DieCard>
+        <DieCard value="six">
+          <DieSix size="sm" />
+        </DieCard>
+      </div>
+
+      <div className="mt-8">
+        <p className="text-center text-base text-slate-400">
+          You can use the 1, 2, 3, 4, 5 and 6 keys to play
+        </p>
+      </div>
 
       {!isNil(selectedDie) && <GameResultModal />}
     </div>

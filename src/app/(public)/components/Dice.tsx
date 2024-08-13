@@ -1,143 +1,150 @@
 import { ReactNode } from 'react'
+import { classNames } from '@/utils/classNames'
 
-export const DieOne = () => {
+export const DieOne = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <FilledPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
     </Die>
   )
 }
 
-export const DieTwo = () => {
+export const DieTwo = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <EmptyPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <FilledPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
     </Die>
   )
 }
 
-export const DieThree = () => {
+export const DieThree = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <EmptyPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <FilledPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <FilledPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
     </Die>
   )
 }
 
-export const DieFour = () => {
+export const DieFour = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <EmptyPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
     </Die>
   )
 }
 
-export const DieFive = () => {
+export const DieFive = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
       <Row>
-        <EmptyPin />
-        <FilledPin />
-        <EmptyPin />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
       </Row>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
     </Die>
   )
 }
 
-export const DieSix = () => {
+export const DieSix = ({ size }: { size: 'sm' | 'lg' }) => {
   return (
-    <Die>
+    <Die size={size}>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
       <Row>
-        <FilledPin />
-        <EmptyPin />
-        <FilledPin />
+        <FilledPin size={size} />
+        <EmptyPin size={size} />
+        <FilledPin size={size} />
       </Row>
     </Die>
   )
 }
 
-const EmptyPin = () => {
-  return <div className="h-2 w-2 rounded-full bg-white" />
+const EmptyPin = ({ size }: { size: 'sm' | 'lg' }) => {
+  return (
+    <div className={classNames(pinSizeMapper[size], 'rounded-full bg-white')} />
+  )
 }
 
-const FilledPin = () => {
-  return <div className="h-2 w-2 rounded-full bg-slate-800" />
+const FilledPin = ({ size }: { size: 'sm' | 'lg' }) => {
+  return (
+    <div
+      className={classNames(pinSizeMapper[size], 'rounded-full bg-slate-800')}
+    />
+  )
 }
 
 const Row = ({ children }: { children: ReactNode }) => {
@@ -146,10 +153,31 @@ const Row = ({ children }: { children: ReactNode }) => {
   )
 }
 
-const Die = ({ children }: { children: ReactNode }) => {
+const Die = ({
+  children,
+  size,
+}: {
+  children: ReactNode
+  size: 'sm' | 'lg'
+}) => {
   return (
-    <div className="flex h-14 w-14 flex-col items-center justify-center space-y-1 rounded-lg border-[1px] border-slate-400 bg-white p-1 text-center text-sm shadow-md">
+    <div
+      className={classNames(
+        dieSizeMapper[size],
+        'flex flex-col items-center justify-center rounded-lg border-[1px] border-slate-400 bg-white text-center text-sm shadow-md'
+      )}
+    >
       {children}
     </div>
   )
+}
+
+const pinSizeMapper: Record<'sm' | 'lg', string> = {
+  sm: 'h-2 w-2',
+  lg: 'h-4 w-4',
+}
+
+const dieSizeMapper: Record<'sm' | 'lg', string> = {
+  sm: 'h-14 w-14 space-y-1 p-1',
+  lg: 'h-24 w-24 space-y-2 p-2',
 }

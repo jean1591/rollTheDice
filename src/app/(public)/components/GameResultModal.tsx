@@ -18,12 +18,12 @@ const getRandomNumber = (): number => {
 }
 
 const dieNumberToDieComponent: Record<number, JSX.Element> = {
-  1: <DieOne />,
-  2: <DieTwo />,
-  3: <DieThree />,
-  4: <DieFour />,
-  5: <DieFive />,
-  6: <DieSix />,
+  1: <DieOne size="lg" />,
+  2: <DieTwo size="lg" />,
+  3: <DieThree size="lg" />,
+  4: <DieFour size="lg" />,
+  5: <DieFive size="lg" />,
+  6: <DieSix size="lg" />,
 }
 
 export const GameResultModal = () => {
@@ -31,7 +31,7 @@ export const GameResultModal = () => {
 
   const { selectedDie } = useSelector((state: RootState) => state.user)
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = () => {
     dispatch(setSelectedDie(null))
   }
 
@@ -48,7 +48,6 @@ export const GameResultModal = () => {
   }
 
   const computerNumber = getRandomNumber()
-
   const gameIsWon = computerNumber === selectedDie
 
   const UserDie = () => dieNumberToDieComponent[selectedDie]
@@ -69,19 +68,36 @@ export const GameResultModal = () => {
       />
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-end justify-center p-4 text-center md:items-center md:p-0">
+        <div className="flex min-h-full items-center justify-center p-4 text-center">
           <DialogPanel
+            onClick={() => dispatch(setSelectedDie(null))}
             transition
             className="relative flex w-full transform items-center justify-center overflow-hidden"
           >
-            <div className="text-left">
-              <DialogTitle className="text-2xl font-extrabold uppercase leading-6 text-white lg:text-7xl">
+            <div className="mt-2">
+              <DialogTitle className="text-4xl font-extrabold uppercase leading-6 text-white lg:text-7xl">
                 {gameIsWon ? 'Game won' : 'Game lost'}
               </DialogTitle>
 
               <div className="mt-16 flex items-center justify-center gap-x-8">
-                <UserDie />
-                <ComputerDie />
+                <div className="space-y-4">
+                  <p className="text-center font-medium uppercase text-slate-600">
+                    Your pick
+                  </p>
+                  <UserDie />
+                </div>
+                <div className="space-y-4">
+                  <p className="text-center font-medium uppercase text-slate-600">
+                    Computer
+                  </p>
+                  <ComputerDie />
+                </div>
+              </div>
+
+              <div className="mt-16">
+                <p className="text-center text-lg font-medium text-white">
+                  Press any key to continue
+                </p>
               </div>
             </div>
           </DialogPanel>
