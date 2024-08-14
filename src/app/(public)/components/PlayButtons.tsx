@@ -4,6 +4,7 @@ import {
   Player,
   addToRolls,
   addToTurnPoints,
+  addToUserLostPoints,
   addToUserPoints,
   changePlayer,
   resetTurnPoints,
@@ -29,6 +30,7 @@ export const PlayButtons = () => {
 
     // Turn is lost, player change
     if (dieValue === 1) {
+      dispatch(addToUserLostPoints(turnPoints))
       dispatch(resetTurnPoints())
       dispatch(changePlayer())
       return

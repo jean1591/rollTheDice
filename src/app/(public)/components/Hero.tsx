@@ -5,7 +5,7 @@ export const Hero = () => {
         Race to 100
       </h1>
       <h2 className="text-xl font-bold">
-        Will you be the first to reach 100 ?
+        Will you be the first to reach a 100 points ?
       </h2>
     </div>
   )

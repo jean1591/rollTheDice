@@ -5,7 +5,7 @@ export const Rules = () => {
 
       <p className="mt-4">
         <span className="font-medium">Objective:</span> Be the first player to
-        reach 100 points !
+        reach a 100 points !
       </p>
 
       <div className="mt-4 space-y-2">

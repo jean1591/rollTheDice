@@ -1,4 +1,5 @@
 import { Hero } from './components/Hero'
+import { LostPoints } from './components/LostPoints'
 import { PlayButtons } from './components/PlayButtons'
 import { Rules } from './components/Rules'
 import { Score } from './components/Score'
@@ -19,7 +20,10 @@ export default function Home() {
 
       <div className="mt-16 flex w-full flex-wrap items-start justify-center gap-8">
         <Rules />
-        <Stats />
+        <div className="flex-1 space-y-8">
+          <Stats />
+          <LostPoints />
+        </div>
       </div>
     </div>
   )

@@ -19,6 +19,8 @@ type Rolls = Record<DieNumber, Stat>
 export interface UserSlice {
   computerPoints: number
   currentPlayer: Player
+  lostComputerPoints: { points: number; turns: number }
+  lostUserPoints: { points: number; turns: number }
   rolls: Rolls
   turnPoints: number
   userPoints: number
@@ -36,6 +38,8 @@ const initialRolls: Rolls = {
 const initialState: UserSlice = {
   computerPoints: 0,
   currentPlayer: Player.USER,
+  lostComputerPoints: { points: 0, turns: 0 },
+  lostUserPoints: { points: 0, turns: 0 },
   rolls: initialRolls,
   turnPoints: 0,
   userPoints: 0,
@@ -72,6 +76,14 @@ export const userSlice = createSlice({
     addToUserPoints: (state, action: PayloadAction<number>) => {
       state.userPoints += action.payload
     },
+    addToComputerLostPoints: (state, action: PayloadAction<number>) => {
+      state.lostComputerPoints.points += action.payload
+      state.lostComputerPoints.turns += 1
+    },
+    addToUserLostPoints: (state, action: PayloadAction<number>) => {
+      state.lostUserPoints.points += action.payload
+      state.lostUserPoints.turns += 1
+    },
     changePlayer: (state) => {
       state.currentPlayer =
         state.currentPlayer === Player.USER ? Player.COMPUTER : Player.USER
@@ -86,9 +98,11 @@ export const userSlice = createSlice({
 })
 
 export const {
-  addToRolls,
+  addToComputerLostPoints,
   addToComputerPoints,
+  addToRolls,
   addToTurnPoints,
+  addToUserLostPoints,
   addToUserPoints,
   changePlayer,
   resetTurnPoints,

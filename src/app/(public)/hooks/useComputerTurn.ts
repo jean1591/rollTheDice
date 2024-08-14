@@ -1,5 +1,6 @@
 import {
   Player,
+  addToComputerLostPoints,
   addToComputerPoints,
   addToRolls,
   addToTurnPoints,
@@ -27,6 +28,7 @@ function useComputerTurn() {
         dispatch(addToRolls(dieValue))
 
         if (dieValue === 1) {
+          dispatch(addToComputerLostPoints(turnPoints))
           dispatch(resetTurnPoints())
           dispatch(changePlayer())
         } else {
