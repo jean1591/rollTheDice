@@ -1,6 +1,6 @@
 export const Rules = () => {
   return (
-    <div className="flex-1 rounded-lg border-[1px] border-slate-200 p-4 shadow-lg">
+    <div className="rounded-lg border-[1px] border-slate-200 p-4 shadow-lg">
       <p className="text-left text-xl font-semibold">How to play ?</p>
 
       <p className="mt-4">

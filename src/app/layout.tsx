@@ -26,7 +26,7 @@ export default function RootLayout({
         <body
           className={classNames(
             inter.className,
-            'mx-auto my-20 flex h-full max-w-5xl flex-col items-center justify-center bg-white px-4 text-slate-800 sm:px-6 lg:px-8'
+            'mx-auto my-20 flex h-full max-w-5xl flex-col items-center justify-center bg-white px-4 text-slate-800'
           )}
         >
           <Toaster position="bottom-right" reverseOrder={true} />

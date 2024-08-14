@@ -18,9 +18,11 @@ export default function Home() {
         <PlayButtons />
       </div>
 
-      <div className="mt-16 flex w-full flex-wrap items-start justify-center gap-8">
-        <Rules />
-        <div className="flex-1 space-y-8">
+      <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="order-2 space-y-8 md:order-1">
+          <Rules />
+        </div>
+        <div className="order-1 space-y-8 md:order-2">
           <Stats />
           <LostPoints />
         </div>

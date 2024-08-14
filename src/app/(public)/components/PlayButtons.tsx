@@ -64,11 +64,11 @@ export const PlayButtons = () => {
   }, [turnPoints])
 
   return (
-    <div className="flex w-full flex-wrap items-center justify-center gap-8">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <button
         onClick={handleRollDie}
         disabled={currentPlayer === Player.COMPUTER}
-        className="flex-1 rounded-lg border-[1px] border-slate-200 bg-blue-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-blue-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
+        className="rounded-lg border-[1px] border-slate-200 bg-blue-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-blue-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
       >
         <p className="text-3xl font-bold">Roll</p>
         <p className="text-sm text-slate-400">
@@ -79,7 +79,7 @@ export const PlayButtons = () => {
       <button
         onClick={handleEndTurn}
         disabled={currentPlayer === Player.COMPUTER}
-        className="flex-1 rounded-lg border-[1px] border-slate-200 bg-slate-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-slate-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
+        className="rounded-lg border-[1px] border-slate-200 bg-slate-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-slate-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
       >
         <p className="text-3xl font-bold">End turn</p>
         <p className="text-sm text-slate-400">
