@@ -2,51 +2,44 @@ import {
   addToComputerPoints,
   addToTurnPoints,
   changePlayer,
+  Player,
   resetTurnPoints,
 } from '@/app/lib/store/features/user/slice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { RootState } from '@/app/lib/store/store'
 import { getRandomNumber } from '@/utils/getRandomNumber'
 
-const THRESHOLD = 20
+const THRESHOLD = 15
 
 function useComputerTurn() {
   const dispatch = useDispatch()
-  const { turnPoints } = useSelector((state: RootState) => state.user)
-  const [rolling, setRolling] = useState(true)
+  const {currentPlayer, turnPoints } = useSelector((state: RootState) => state.user)
 
   useEffect(() => {
-    if (rolling) {
+    if (currentPlayer === Player.COMPUTER) {
       const timer = setTimeout(() => {
         const dieValue = getRandomNumber()
 
         if (dieValue === 1) {
           dispatch(resetTurnPoints())
-          setRolling(false)
+          dispatch(changePlayer())
         } else {
           dispatch(addToTurnPoints(dieValue))
 
           if (turnPoints >= THRESHOLD) {
-            setRolling(false)
+            dispatch(addToComputerPoints(turnPoints))
+            dispatch(resetTurnPoints())
+            dispatch(changePlayer())
           }
         }
       }, 500)
 
       return () => clearTimeout(timer)
-    } else {
-      dispatch(addToComputerPoints(turnPoints))
-      dispatch(resetTurnPoints())
-      dispatch(changePlayer())
     }
-  }, [turnPoints])
+  }, [currentPlayer, turnPoints])
 
-  const startComputerTurn = () => {
-    setRolling(true)
-  }
-
-  return { startComputerTurn }
 }
 
 export default useComputerTurn

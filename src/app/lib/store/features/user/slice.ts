@@ -9,7 +9,6 @@ export enum Player {
 export interface UserSlice {
   computerPoints: number
   currentPlayer: Player
-  selectedDie: number | null
   turnPoints: number
   userPoints: number
 }
@@ -17,7 +16,6 @@ export interface UserSlice {
 const initialState: UserSlice = {
   computerPoints: 0,
   currentPlayer: Player.USER,
-  selectedDie: null,
   turnPoints: 0,
   userPoints: 0,
 }
@@ -36,9 +34,6 @@ export const userSlice = createSlice({
       state.userPoints += action.payload
     },
     changePlayer: (state) => {
-      const nextUser =
-        state.currentPlayer === Player.USER ? Player.COMPUTER : Player.USER
-      console.log(`🚀 ~ Changing ${state.currentPlayer} to ${nextUser}`)
       state.currentPlayer =
         state.currentPlayer === Player.USER ? Player.COMPUTER : Player.USER
     },

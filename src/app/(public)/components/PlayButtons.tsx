@@ -22,15 +22,7 @@ export const PlayButtons = () => {
     (state: RootState) => state.user
   )
 
-  /* const { startComputerTurn } = useComputerTurn()
-
-  useEffect(() => {
-    console.log('🚀 ~ useEffect ~ currentPlayer:', currentPlayer)
-
-    if (currentPlayer === Player.COMPUTER) {
-      startComputerTurn()
-    }
-  }, [currentPlayer, startComputerTurn]) */
+  useComputerTurn()
 
   const handleRollDie = () => {
     const dieValue = getRandomNumber()
@@ -67,7 +59,7 @@ export const PlayButtons = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [turnPoints])
 
   return (
     <div className="flex w-full flex-wrap items-center justify-center gap-8">
