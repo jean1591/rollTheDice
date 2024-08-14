@@ -14,8 +14,6 @@ import { getRandomNumber } from '@/utils/getRandomNumber'
 import useComputerTurn from '../hooks/useComputerTurn'
 import { useEffect } from 'react'
 
-// TODO: turnPoints is always 0 even though the turn point score is OK 🤔
-// Seems to be ok when using button click and not key stroke
 export const PlayButtons = () => {
   const dispatch = useDispatch()
   const { currentPlayer, turnPoints } = useSelector(
