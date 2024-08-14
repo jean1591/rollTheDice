@@ -8,7 +8,7 @@ export const Rules = () => {
         reach 100 points !
       </p>
 
-      <div className="mt-4 space-y-1">
+      <div className="mt-4 space-y-2">
         <p>
           Players take turns rolling the die as many times as they want during
           their turn.

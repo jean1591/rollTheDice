@@ -1,21 +1,42 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
+export type DieNumber = 1 | 2 | 3 | 4 | 5 | 6
+const dieNumber = new Set<DieNumber>([1, 2, 3, 4, 5, 6])
+
 export enum Player {
   COMPUTER = 'computer',
   USER = 'user',
 }
 
+interface Stat {
+  count: number
+  percentage: string
+}
+
+type Rolls = Record<DieNumber, Stat>
+
 export interface UserSlice {
   computerPoints: number
   currentPlayer: Player
+  rolls: Rolls
   turnPoints: number
   userPoints: number
+}
+
+const initialRolls: Rolls = {
+  '1': { count: 0, percentage: '0' },
+  '2': { count: 0, percentage: '0' },
+  '3': { count: 0, percentage: '0' },
+  '4': { count: 0, percentage: '0' },
+  '5': { count: 0, percentage: '0' },
+  '6': { count: 0, percentage: '0' },
 }
 
 const initialState: UserSlice = {
   computerPoints: 0,
   currentPlayer: Player.USER,
+  rolls: initialRolls,
   turnPoints: 0,
   userPoints: 0,
 }
@@ -24,6 +45,24 @@ export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
+    addToRolls: (state, action: PayloadAction<DieNumber>) => {
+      const updatedRolls = { ...state.rolls }
+      const totalRolls = Object.values(updatedRolls).reduce(
+        (acc, current) => acc + current.count,
+        1
+      )
+
+      updatedRolls[action.payload].count += 1
+
+      dieNumber.forEach((keyRoll) => {
+        updatedRolls[keyRoll].percentage = (
+          (updatedRolls[keyRoll].count / totalRolls) *
+          100
+        ).toFixed(2)
+      })
+
+      state.rolls = updatedRolls
+    },
     addToTurnPoints: (state, action: PayloadAction<number>) => {
       state.turnPoints += action.payload
     },
@@ -47,6 +86,7 @@ export const userSlice = createSlice({
 })
 
 export const {
+  addToRolls,
   addToComputerPoints,
   addToTurnPoints,
   addToUserPoints,
