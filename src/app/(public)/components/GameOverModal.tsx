@@ -36,7 +36,7 @@ export const GameOverModal = () => {
     <Dialog
       className="relative z-10"
       open={displayGameOverModal}
-      onClose={() => dispatch(setDisplayGameOverModal(false))}
+      onClose={() => undefined}
     >
       <DialogBackdrop
         transition

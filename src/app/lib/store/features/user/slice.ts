@@ -46,7 +46,7 @@ const initialState: UserSlice = {
   lostUserPoints: { points: 0, turns: 0 },
   rolls: initialRolls,
   turnPoints: 0,
-  userPoints: 99,
+  userPoints: 0,
 }
 
 export const userSlice = createSlice({

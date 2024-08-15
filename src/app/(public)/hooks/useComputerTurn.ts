@@ -17,12 +17,12 @@ const THRESHOLD = 15
 
 function useComputerTurn() {
   const dispatch = useDispatch()
-  const { currentPlayer, turnPoints } = useSelector(
+  const { currentPlayer, displayGameOverModal, turnPoints } = useSelector(
     (state: RootState) => state.user
   )
 
   useEffect(() => {
-    if (currentPlayer === Player.COMPUTER) {
+    if (!displayGameOverModal && currentPlayer === Player.COMPUTER) {
       const timer = setTimeout(() => {
         const dieValue = getRandomNumber()
         dispatch(addToRolls(dieValue))
