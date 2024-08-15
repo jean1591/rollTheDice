@@ -11,6 +11,7 @@ import {
 } from '@/app/lib/store/features/user/slice'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { GameOverModal } from './GameOverModal'
 import { RootState } from '@/app/lib/store/store'
 import { getRandomNumber } from '@/utils/getRandomNumber'
 import useComputerTurn from '../hooks/useComputerTurn'
@@ -18,7 +19,7 @@ import { useEffect } from 'react'
 
 export const PlayButtons = () => {
   const dispatch = useDispatch()
-  const { currentPlayer, turnPoints } = useSelector(
+  const { currentPlayer, displayGameOverModal, turnPoints } = useSelector(
     (state: RootState) => state.user
   )
 
@@ -86,6 +87,8 @@ export const PlayButtons = () => {
           You can use the <span className="font-bold">E</span> key to play
         </p>
       </button>
+
+      {displayGameOverModal && <GameOverModal />}
     </div>
   )
 }

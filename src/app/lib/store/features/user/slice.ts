@@ -1,6 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
+// TODO: stop game when one player wins
+
 export type DieNumber = 1 | 2 | 3 | 4 | 5 | 6
 const dieNumber = new Set<DieNumber>([1, 2, 3, 4, 5, 6])
 
@@ -19,6 +21,7 @@ type Rolls = Record<DieNumber, Stat>
 export interface UserSlice {
   computerPoints: number
   currentPlayer: Player
+  displayGameOverModal: boolean
   lostComputerPoints: { points: number; turns: number }
   lostUserPoints: { points: number; turns: number }
   rolls: Rolls
@@ -38,11 +41,12 @@ const initialRolls: Rolls = {
 const initialState: UserSlice = {
   computerPoints: 0,
   currentPlayer: Player.USER,
+  displayGameOverModal: false,
   lostComputerPoints: { points: 0, turns: 0 },
   lostUserPoints: { points: 0, turns: 0 },
   rolls: initialRolls,
   turnPoints: 0,
-  userPoints: 0,
+  userPoints: 99,
 }
 
 export const userSlice = createSlice({
@@ -72,9 +76,17 @@ export const userSlice = createSlice({
     },
     addToComputerPoints: (state, action: PayloadAction<number>) => {
       state.computerPoints += action.payload
+
+      if (state.computerPoints >= 100) {
+        state.displayGameOverModal = true
+      }
     },
     addToUserPoints: (state, action: PayloadAction<number>) => {
       state.userPoints += action.payload
+
+      if (state.userPoints >= 100) {
+        state.displayGameOverModal = true
+      }
     },
     addToComputerLostPoints: (state, action: PayloadAction<number>) => {
       state.lostComputerPoints.points += action.payload
@@ -88,11 +100,15 @@ export const userSlice = createSlice({
       state.currentPlayer =
         state.currentPlayer === Player.USER ? Player.COMPUTER : Player.USER
     },
+    resetGame: () => initialState,
     resetTurnPoints: (state) => {
       state.turnPoints = 0
     },
     setComputerPoints: (state, action: PayloadAction<number>) => {
       state.computerPoints = action.payload
+    },
+    setDisplayGameOverModal: (state, action: PayloadAction<boolean>) => {
+      state.displayGameOverModal = action.payload
     },
   },
 })
@@ -105,8 +121,10 @@ export const {
   addToUserLostPoints,
   addToUserPoints,
   changePlayer,
+  resetGame,
   resetTurnPoints,
   setComputerPoints,
+  setDisplayGameOverModal,
 } = userSlice.actions
 
 export default userSlice.reducer
