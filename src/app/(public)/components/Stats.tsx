@@ -7,7 +7,7 @@ export const Stats = () => {
   const { rolls } = useSelector((state: RootState) => state.user)
 
   return (
-    <div className="rounded-lg border-[1px] border-slate-200 p-4 shadow-lg">
+    <div className="rounded-lg p-4 shadow-lg">
       <p className="text-left text-xl font-semibold">Live stats</p>
 
       <table className="min-w-full divide-y divide-slate-300">

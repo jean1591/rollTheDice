@@ -1,8 +1,8 @@
 'use client'
 
 import { Player } from '@/app/lib/store/features/user/slice'
+import { ProgressBar } from './ProgressBar'
 import { RootState } from '@/app/lib/store/store'
-import { classNames } from '@/utils/classNames'
 import { useSelector } from 'react-redux'
 
 export const Score = () => {
@@ -11,49 +11,47 @@ export const Score = () => {
   )
 
   return (
-    <div className="grid grid-cols-1 gap-8 rounded-lg bg-slate-100 p-4 shadow-lg md:grid-cols-2 md:p-8">
-      <div className="rounded-lg bg-white p-4">
-        <p className="text-center text-3xl font-bold">You</p>
+    <div className="grid grid-cols-1 gap-8 rounded-lg p-4 shadow-lg md:grid-cols-2 md:p-8">
+      <PlayerScore
+        player="You"
+        points={userPoints}
+        turnPoints={currentPlayer === Player.USER ? turnPoints : 0}
+      />
+      <PlayerScore
+        player="Computer"
+        points={computerPoints}
+        turnPoints={currentPlayer === Player.COMPUTER ? turnPoints : 0}
+      />
+    </div>
+  )
+}
 
-        <div className="mt-12 flex items-center justify-between gap-x-4">
-          <div
-            className={classNames(
-              userPoints >= 100 ? 'bg-green-100' : 'bg-slate-100',
-              'flex-1 rounded-lg p-4 text-right shadow-md'
-            )}
-          >
-            <p className="text-2xl font-bold">{userPoints}</p>
-            <p className="text-sm text-slate-400">Score</p>
-          </div>
-          <div className="flex-1 rounded-lg bg-slate-100 p-4 text-right shadow-md">
-            <p className="text-2xl font-bold">
-              {currentPlayer === Player.USER ? turnPoints : 0}
-            </p>
-            <p className="text-sm text-slate-400">Turn</p>
-          </div>
+const PlayerScore = ({
+  player,
+  points,
+  turnPoints,
+}: {
+  player: string
+  points: number
+  turnPoints: number
+}) => {
+  return (
+    <div className="grid grid-cols-5 gap-x-8">
+      <div className="col-span-3">
+        <p className="text-2xl font-extrabold">{player}</p>
+        <div className="mt-2">
+          <ProgressBar progress={points} />
         </div>
       </div>
 
-      <div className="rounded-lg bg-white p-4">
-        <p className="text-center text-3xl font-bold">Computer</p>
+      <div className="my-auto text-left">
+        <p className="text-xl font-bold">{points}</p>
+        <p className="text-sm text-slate-400">Points</p>
+      </div>
 
-        <div className="mt-12 flex items-center justify-between gap-x-4">
-          <div
-            className={classNames(
-              computerPoints >= 100 ? 'bg-green-100' : 'bg-slate-100',
-              'flex-1 rounded-lg p-4 text-right shadow-md'
-            )}
-          >
-            <p className="text-2xl font-bold">{computerPoints}</p>
-            <p className="text-sm text-slate-400">Score</p>
-          </div>
-          <div className="flex-1 rounded-lg bg-slate-100 p-4 text-right shadow-md">
-            <p className="text-2xl font-bold">
-              {currentPlayer === Player.COMPUTER ? turnPoints : 0}
-            </p>
-            <p className="text-sm text-slate-400">Turn</p>
-          </div>
-        </div>
+      <div className="my-auto text-left">
+        <p className="text-xl font-bold">{turnPoints}</p>
+        <p className="text-sm text-slate-400">Turn</p>
       </div>
     </div>
   )

@@ -65,14 +65,14 @@ export const PlayButtons = () => {
   }, [turnPoints])
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div className="flex flex-row gap-8 md:flex-col">
       <button
         onClick={handleRollDie}
         disabled={currentPlayer === Player.COMPUTER}
-        className="rounded-lg border-[1px] border-slate-200 bg-blue-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-blue-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
+        className="flex-1 rounded-lg bg-blue-100 px-4 py-4 shadow-lg transition duration-500 ease-in-out hover:bg-blue-50 hover:shadow-none disabled:bg-white disabled:shadow-none md:py-8"
       >
-        <p className="text-3xl font-bold">Roll</p>
-        <p className="text-sm text-slate-400">
+        <p className="text-xl font-bold md:text-3xl">Roll 🔥</p>
+        <p className="hidden text-sm text-slate-400 md:block">
           You can use the <span className="font-bold">R</span> key to play
         </p>
       </button>
@@ -80,10 +80,10 @@ export const PlayButtons = () => {
       <button
         onClick={handleEndTurn}
         disabled={currentPlayer === Player.COMPUTER}
-        className="rounded-lg border-[1px] border-slate-200 bg-slate-100 px-4 py-8 shadow-lg transition duration-500 ease-in-out hover:bg-slate-50 hover:shadow-none focus:border-slate-200 disabled:bg-white disabled:shadow-none"
+        className="flex-1 rounded-lg bg-slate-100 px-4 py-4 shadow-lg transition duration-500 ease-in-out hover:bg-slate-50 hover:shadow-none disabled:bg-white disabled:shadow-none md:py-8"
       >
-        <p className="text-3xl font-bold">End turn</p>
-        <p className="text-sm text-slate-400">
+        <p className="text-xl font-bold md:text-3xl">End turn 💎</p>
+        <p className="hidden text-sm text-slate-400 md:block">
           You can use the <span className="font-bold">E</span> key to play
         </p>
       </button>

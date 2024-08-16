@@ -1,8 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-// TODO: stop game when one player wins
-
 export type DieNumber = 1 | 2 | 3 | 4 | 5 | 6
 const dieNumber = new Set<DieNumber>([1, 2, 3, 4, 5, 6])
 
@@ -46,7 +44,7 @@ const initialState: UserSlice = {
   lostUserPoints: { points: 0, turns: 0 },
   rolls: initialRolls,
   turnPoints: 0,
-  userPoints: 0,
+  userPoints: 99,
 }
 
 export const userSlice = createSlice({

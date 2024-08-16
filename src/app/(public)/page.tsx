@@ -9,21 +9,13 @@ export default function Home() {
     <div className="w-full">
       <Hero />
 
-      <div className="mt-16">
+      <div className="mt-8 md:mt-16">
         <Score />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         <PlayButtons />
-      </div>
-
-      <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="order-2 space-y-8 md:order-1">
-          <Rules />
-        </div>
-        <div className="order-1 space-y-8 md:order-2">
-          <Stats />
-        </div>
+        <Stats />
       </div>
     </div>
   )
