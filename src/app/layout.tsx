@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    template: 'Dice - Can you beat the odds ?',
-    default: 'Dice - Can you beat the odds ?',
+    template: 'Race to 100 - Will you be the first to reach a 100 points ?',
+    default: 'Race to 100 - Will you be the first to reach a 100 points ?',
   },
 }
 
@@ -24,10 +24,7 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="fr">
         <body
-          className={classNames(
-            inter.className,
-            'mx-auto my-20 flex h-full max-w-5xl flex-col items-center justify-center bg-white px-4 text-slate-800'
-          )}
+          className={classNames(inter.className, 'bg-white text-slate-800')}
         >
           <Toaster position="bottom-right" reverseOrder={true} />
           {children}
