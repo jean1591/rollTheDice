@@ -6,7 +6,7 @@ export const Hero = () => {
       </h1>
       <div className="flex w-full items-center justify-center">
         <h2 className="absolute bottom-1/2 mt-4 text-lg font-bold md:bottom-1/4 md:text-2xl">
-          Will you be the first to reach a 100 points ?
+          Be the first to reach a 100 points
         </h2>
       </div>
     </div>

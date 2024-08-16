@@ -9,23 +9,32 @@ import Link from 'next/link'
 
 export const Footer = () => {
   return (
-    <div className="bg-slate-50 p-8 text-sm text-slate-400">
+    <div className="bg-slate-50 px-4 py-4 text-sm text-slate-400 md:px-0">
       <div className="mx-auto max-w-5xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <p>Yet another app made with ❤️ by Jean Robertou</p>
+        <div className="md:flex md:items-center md:justify-between md:space-y-0">
+          <p className="flex items-center justify-center gap-x-1 md:justify-start">
+            Yet another app made with ❤️ by
+            <Link
+              className="border-b-[1px] border-slate-400"
+              target="_blank"
+              href="https://jeanrobertou.com"
+            >
+              Jean Robertou
+            </Link>
+          </p>
+
+          <div className="mt-4 flex items-center justify-center md:mt-0 md:justify-start">
+            <Link
+              className="border-b-[1px] border-slate-400"
+              href={'/rules'}
+              target="_blank"
+            >
+              Rules
+            </Link>
           </div>
 
-          <Link
-            className="border-b-[1px] border-slate-400"
-            href={'/rules'}
-            target="_blank"
-          >
-            Rules
-          </Link>
-
-          <div className="flex items-center justify-end gap-x-1">
-            <p>Inspired from</p>
+          <div className="mt-4 flex items-center justify-center gap-x-1 md:mt-0 md:justify-end">
+            <p>Inspired by</p>
             <Link
               className="border-b-[1px] border-slate-400"
               target="_blank"
@@ -33,13 +42,12 @@ export const Footer = () => {
             >
               1in1million
             </Link>
-            <p>by</p>
             <Link
               className="border-b-[1px] border-slate-400"
               target="_blank"
               href="https://x.com/pkundr"
             >
-              Philipp Kundratitz
+              (Philipp Kundratitz)
             </Link>
           </div>
         </div>
@@ -65,11 +73,3 @@ export const Footer = () => {
     </div>
   )
 }
-
-/*
-Jean Robertou
-
-    Github
-
-    Linkedin
-*/
