@@ -6,14 +6,13 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/react'
-import {
-  Player,
-  resetGame,
-  setDisplayGameOverModal,
-} from '@/app/lib/store/features/user/slice'
+import { Player, resetGame } from '@/app/lib/store/features/user/slice'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState } from '@/app/lib/store/store'
+import toast from 'react-hot-toast'
+
+const notifyResetGame = () => toast.success('Game reset !', { duration: 5000 })
 
 const title = {
   [Player.COMPUTER]: '😵 Oh no ! You lost the game ! 😵',
@@ -31,6 +30,11 @@ export const GameOverModal = () => {
   } = useSelector((state: RootState) => state.user)
 
   const winner = userPoints >= 100 ? Player.USER : Player.COMPUTER
+
+  const handleNewGame = () => {
+    dispatch(resetGame())
+    notifyResetGame()
+  }
 
   return (
     <Dialog
@@ -81,14 +85,14 @@ export const GameOverModal = () => {
                     <p className="text-right">{lostComputerPoints.turns}</p>
                   </div>
                 </div>
-              </div>
 
-              <button
-                className="mx-auto mt-12 flex items-center justify-center rounded-lg bg-gradient-to-r from-violet-500 to-indigo-300 px-8 py-4 font-semibold uppercase shadow-lg transition duration-500 ease-in-out hover:shadow-none"
-                onClick={() => dispatch(resetGame())}
-              >
-                New game
-              </button>
+                <button
+                  className="mx-auto mt-12 flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold uppercase shadow-lg transition duration-500 ease-in-out hover:border-blue-300 hover:text-blue-300"
+                  onClick={handleNewGame}
+                >
+                  New game
+                </button>
+              </div>
             </div>
           </DialogPanel>
         </div>

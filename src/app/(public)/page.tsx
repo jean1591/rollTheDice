@@ -1,5 +1,4 @@
 import { Hero } from './components/Hero'
-import { LostPoints } from './components/LostPoints'
 import { PlayButtons } from './components/PlayButtons'
 import { Rules } from './components/Rules'
 import { Score } from './components/Score'
@@ -24,7 +23,6 @@ export default function Home() {
         </div>
         <div className="order-1 space-y-8 md:order-2">
           <Stats />
-          <LostPoints />
         </div>
       </div>
     </div>

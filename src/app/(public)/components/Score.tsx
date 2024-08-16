@@ -11,7 +11,7 @@ export const Score = () => {
   )
 
   return (
-    <div className="grid grid-cols-1 gap-8 rounded-lg bg-slate-100 p-8 shadow-lg md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-8 rounded-lg bg-slate-100 p-4 shadow-lg md:grid-cols-2 md:p-8">
       <div className="rounded-lg bg-white p-4">
         <p className="text-center text-3xl font-bold">You</p>
 
