@@ -1,17 +1,40 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { Player } from '@/app/lib/store/features/user/slice'
 import { ProgressBar } from './ProgressBar'
 import { RootState } from '@/app/lib/store/store'
+import { classNames } from '@/utils/classNames'
 import { useSelector } from 'react-redux'
 
 export const Score = () => {
-  const { computerPoints, currentPlayer, turnPoints, userPoints } = useSelector(
-    (state: RootState) => state.user
-  )
+  const [highlight, setHighlight] = useState(false)
+
+  const { computerPoints, currentPlayer, history, turnPoints, userPoints } =
+    useSelector((state: RootState) => state.user)
+
+  useEffect(() => {
+    const latestRoll = history.at(-1)
+
+    if (latestRoll?.value === 1) {
+      setHighlight(true)
+
+      const timer = setTimeout(() => {
+        setHighlight(false)
+      }, 500)
+
+      return () => clearTimeout(timer)
+    }
+  }, [history])
 
   return (
-    <div className="grid grid-cols-1 gap-8 rounded-lg p-4 shadow-lg md:grid-cols-2 md:p-8">
+    <div
+      className={classNames(
+        highlight ? 'animate-highlight' : '',
+        'grid grid-cols-1 gap-8 rounded-lg p-4 shadow-lg md:grid-cols-2 md:p-8'
+      )}
+    >
       <PlayerScore
         player="You"
         points={userPoints}

@@ -2,7 +2,7 @@ import {
   Player,
   addToComputerLostPoints,
   addToComputerPoints,
-  addToRolls,
+  addToHistory,
   addToTurnPoints,
   changePlayer,
   resetTurnPoints,
@@ -24,7 +24,7 @@ function useComputerTurn() {
     if (!displayGameOverModal && currentPlayer === Player.COMPUTER) {
       const timer = setTimeout(() => {
         const dieValue = getRandomNumber()
-        dispatch(addToRolls(dieValue))
+        dispatch(addToHistory(dieValue))
 
         if (dieValue === 1) {
           dispatch(addToComputerLostPoints(turnPoints))

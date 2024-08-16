@@ -2,7 +2,7 @@
 
 import {
   Player,
-  addToRolls,
+  addToHistory,
   addToTurnPoints,
   addToUserLostPoints,
   addToUserPoints,
@@ -27,7 +27,7 @@ export const PlayButtons = () => {
 
   const handleRollDie = () => {
     const dieValue = getRandomNumber()
-    dispatch(addToRolls(dieValue))
+    dispatch(addToHistory(dieValue))
 
     // Turn is lost, player change
     if (dieValue === 1) {

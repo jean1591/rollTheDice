@@ -9,6 +9,11 @@ export enum Player {
   USER = 'user',
 }
 
+interface History {
+  player: Player
+  value: DieNumber
+}
+
 interface Stat {
   count: number
   percentage: string
@@ -20,6 +25,7 @@ export interface UserSlice {
   computerPoints: number
   currentPlayer: Player
   displayGameOverModal: boolean
+  history: History[]
   lostComputerPoints: { points: number; turns: number }
   lostUserPoints: { points: number; turns: number }
   rolls: Rolls
@@ -40,6 +46,7 @@ const initialState: UserSlice = {
   computerPoints: 0,
   currentPlayer: Player.USER,
   displayGameOverModal: false,
+  history: [],
   lostComputerPoints: { points: 0, turns: 0 },
   lostUserPoints: { points: 0, turns: 0 },
   rolls: initialRolls,
@@ -51,7 +58,14 @@ export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    addToRolls: (state, action: PayloadAction<DieNumber>) => {
+    addToHistory: (state, action: PayloadAction<DieNumber>) => {
+      // Update history
+      state.history = [
+        ...state.history,
+        { player: state.currentPlayer, value: action.payload },
+      ]
+
+      // Update rolls
       const updatedRolls = { ...state.rolls }
       const totalRolls = Object.values(updatedRolls).reduce(
         (acc, current) => acc + current.count,
@@ -114,7 +128,7 @@ export const userSlice = createSlice({
 export const {
   addToComputerLostPoints,
   addToComputerPoints,
-  addToRolls,
+  addToHistory,
   addToTurnPoints,
   addToUserLostPoints,
   addToUserPoints,
