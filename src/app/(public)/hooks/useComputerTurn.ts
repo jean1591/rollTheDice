@@ -17,9 +17,8 @@ const THRESHOLD = 15
 
 function useComputerTurn() {
   const dispatch = useDispatch()
-  const { currentPlayer, displayGameOverModal, turnPoints } = useSelector(
-    (state: RootState) => state.user
-  )
+  const { computerPoints, currentPlayer, displayGameOverModal, turnPoints } =
+    useSelector((state: RootState) => state.user)
 
   useEffect(() => {
     if (!displayGameOverModal && currentPlayer === Player.COMPUTER) {
@@ -32,10 +31,14 @@ function useComputerTurn() {
           dispatch(resetTurnPoints())
           dispatch(changePlayer())
         } else {
+          const currentTurnPoints = dieValue + turnPoints
           dispatch(addToTurnPoints(dieValue))
 
-          if (turnPoints >= THRESHOLD) {
-            dispatch(addToComputerPoints(turnPoints))
+          if (
+            currentTurnPoints >= THRESHOLD ||
+            currentTurnPoints + computerPoints >= 100
+          ) {
+            dispatch(addToComputerPoints(currentTurnPoints))
             dispatch(resetTurnPoints())
             dispatch(changePlayer())
           }
