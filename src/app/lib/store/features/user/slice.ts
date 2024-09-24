@@ -120,7 +120,6 @@ export const userSlice = createSlice({
       state.computerPoints = action.payload
     },
     setDisplayGameOverModal: (state, action: PayloadAction<boolean>) => {
-      console.log('The game is over')
       state.displayGameOverModal = action.payload
     },
   },
